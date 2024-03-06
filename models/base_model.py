@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from datetime import datetime
 import uuid
+from models import storage
 
 """ BaseModel module """
 
@@ -34,6 +35,7 @@ class BaseModel:
 
     def save(self):
         '''Update the date due to the last modification of an object'''
+        storage.save()
         self.updated_at = datetime.now()
 
     def to_dict(self):
@@ -44,6 +46,3 @@ class BaseModel:
         new_dic['created_at'] = self.created_at.isoformat()
         new_dic['updated_at'] = self.updated_at.isoformat()
         return new_dic
-
-r = BaseModel(created_at="12/5/2022")
-print(r.id)
