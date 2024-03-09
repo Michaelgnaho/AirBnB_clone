@@ -1,5 +1,5 @@
+#!/usr/bin/env python3
 #!/usr/bin/python3
-
 """Defines unittests for models/user.py.
 Unittest classes:
     TestUser_instantiation
@@ -7,13 +7,14 @@ Unittest classes:
     TestUser_to_dict
 """
 
+import unittest
+import os
 from models import storage
 from models.user import User
 from models.base_model import BaseModel
-from models.base_model import BaseModel
 from datetime import datetime
-import unittest
-
+from time import sleep
+import uuid
 
 class TestUser_instantiation(unittest.TestCase):
     """User model class test case"""
@@ -22,10 +23,10 @@ class TestUser_instantiation(unittest.TestCase):
     def setUpClass(cls):
         """Setup the unittest"""
         cls.user = User()
-        cls.user.email = "makron@valo.com"
-        cls.user.password = "1111"
-        cls.user.first_name = "phoe"
-        cls.user.last_name = "nex"
+        cls.user.email = "me@example.com"
+        cls.user.password = "123i123"
+        cls.user.first_name = "John"
+        cls.user.last_name = "Swag"
 
     def test_for_instantiation(self):
         """Tests instantiation of User class."""
@@ -34,8 +35,8 @@ class TestUser_instantiation(unittest.TestCase):
         self.assertIsInstance(user, User)
         self.assertTrue(issubclass(type(user), BaseModel))
 
-    def test_type(self):
-        self.assertEqual(type(User()), User)
+    def test_no_args_instantiates(self):
+        self.assertEqual(User, type(User()))
 
     def test_new_instance_stored_in_objects(self):
         self.assertIn(User(), storage.all().values())
@@ -46,14 +47,14 @@ class TestUser_instantiation(unittest.TestCase):
     def test_created_at_is_public_datetime(self):
         self.assertEqual(datetime, type(User().created_at))
 
-    def test_attrs(self):
+    def test_has_attributes(self):
         self.assertTrue('id' in self.user.__dict__)
-        self.assertTrue('email' in self.user.__dict__)
-        self.assertTrue('first_name' in self.user.__dict__)
-        self.assertTrue('last_name' in self.user.__dict__)
-        self.assertTrue('password' in self.user.__dict__)
         self.assertTrue('created_at' in self.user.__dict__)
         self.assertTrue('updated_at' in self.user.__dict__)
+        self.assertTrue('email' in self.user.__dict__)
+        self.assertTrue('password' in self.user.__dict__)
+        self.assertTrue('first_name' in self.user.__dict__)
+        self.assertTrue('last_name' in self.user.__dict__)
 
     def test_attributes_are_string(self):
         self.assertIs(type(self.user.email), str)
