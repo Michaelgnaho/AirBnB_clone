@@ -45,4 +45,3 @@ class BaseModel:
         """Return representation of the BaseModel instance."""
         classname = self.__class__.__name__
         return "[{}] ({}) {}".format(classname, self.id, self.__dict__)
-    
