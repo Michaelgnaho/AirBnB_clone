@@ -12,7 +12,7 @@ class BaseModel:
         """new BaseModel Initialization.
 
         Args:
-             *args won't be :used
+             *args won’t be :used
             **kwargs : Key&&value pairs of attributes.
         """
         first = "%Y-%m-%dT%H:%M:%S.%f"
