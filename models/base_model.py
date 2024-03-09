@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from datetime import datetime
 import uuid
-from models import storage
+import models
 
 """ BaseModel module """
 
@@ -28,7 +28,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
-            storage.new(self)
+            models.storage.new(self)
 
     def __str__(self):
         '''Returns a representation of an object of BaseModel class'''
