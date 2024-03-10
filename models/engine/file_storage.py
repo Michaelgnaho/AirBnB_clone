@@ -35,7 +35,6 @@ class FileStorage:
     def new(self, obj):
         '''sets in __objects the obj with key <obj class name>.id'''
         if obj.id in type(self).__objects:
-            print("exists")
             return
         else:
             k = f"{obj.__class__.__name__}.{obj.id}"
@@ -46,7 +45,7 @@ class FileStorage:
         x = []
         for obj in type(self).__objects.values():
             x.append(obj.to_dict())
-        with open(type(self).__file_path, "w", encoding='utf-8') as f:
+        with open(type(self).__file_path, "w") as f:
             json.dump(x, f)
 
     def reload(self):
