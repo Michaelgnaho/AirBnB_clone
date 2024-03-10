@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
-"""Test model for Review class
-Unittest classes:
-    TestReview_instantiation
-    TestReview_save
-    TestReview_to_dict
-"""
+"""The test model for (review) class"""
 
 import unittest
 import os
@@ -25,11 +20,11 @@ class TestReview(unittest.TestCase):
         cls.review = Review()
         cls.review.user_id = str(uuid.uuid4())
         cls.review.place_id = str(uuid.uuid4())
-        cls.review.text = "St. Petesburg"
+        cls.review.text = "So great and peaceful"
 
     @classmethod
     def tearDownClass(cls):
-        """Clean up the dirt"""
+        """Cleans class up"""
         del cls.review
         try:
             os.remove("file.json")
@@ -49,64 +44,69 @@ class TestReview_instantiation(unittest.TestCase):
     def test_no_args_instantiates(self):
         self.assertEqual(Review, type(Review()))
 
-    def test_new_instance_stored_in_objects(self):
+    def test_is_stored(self):
         self.assertIn(Review(), storage.all().values())
 
     def test_id_is_public_str(self):
         self.assertEqual(str, type(Review().id))
 
-    def test_created_at_is_public_datetime(self):
+    def test_created_at(self):
         self.assertEqual(datetime, type(Review().created_at))
 
-    def test_updated_at_is_public_datetime(self):
+    def test_updated_at(self):
         self.assertEqual(datetime, type(Review().updated_at))
 
-    def test_place_id_is_public_class_attribute(self):
-        rv = Review()
+    def test_id_is_pub(self):
+        r = Review()
         self.assertEqual(str, type(Review.place_id))
-        self.assertIn("place_id", dir(rv))
-        self.assertNotIn("place_id", rv.__dict__)
+        self.assertIn("place_id", dir(r))
+        self.assertNotIn("place_id", r.__dict__)
 
-    def test_user_id_is_public_class_attribute(self):
+    def test_user_id_is_pub_cls(self):
         rv = Review()
         self.assertEqual(str, type(Review.user_id))
         self.assertIn("user_id", dir(rv))
         self.assertNotIn("user_id", rv.__dict__)
 
-    def test_text_is_public_class_attribute(self):
-        rv = Review()
+    def test_text_is_public_cls(self):
+        r = Review()
         self.assertEqual(str, type(Review.text))
-        self.assertIn("text", dir(rv))
-        self.assertNotIn("text", rv.__dict__)
+        self.assertIn("text", dir(r))
+        self.assertNotIn("text", r.__dict__)
 
     def test_two_reviews_unique_ids(self):
-        rv1 = Review()
-        rv2 = Review()
-        self.assertNotEqual(rv1.id, rv2.id)
+        r1 = Review()
+        r2 = Review()
+        r3 = Review()
+        r4 = Review()
+        self.assertNotEqual(r1.id, r2.id)
+        self.assertNotEqual(r1.id, r3.id)
+        self.assertNotEqual(r2.id, r4.id)
+        self.assertNotEqual(r3.id, r4.id)
 
-    def test_two_reviews_different_created_at(self):
-        rv1 = Review()
-        sleep(0.05)
-        rv2 = Review()
-        self.assertLess(rv1.created_at, rv2.created_at)
+    def test_two_rev_created_at(self):
+        r1 = Review()
+        sleep(0.1)
+        r2 = Review()
+        self.assertLess(r1.created_at, r2.created_at)
 
     def test_two_reviews_different_updated_at(self):
         rv1 = Review()
-        sleep(0.05)
+        sleep(0.1)
         rv2 = Review()
         self.assertLess(rv1.updated_at, rv2.updated_at)
 
     def test_str_representation(self):
         dt = datetime.today()
         dt_repr = repr(dt)
-        rv = Review()
-        rv.id = "123456"
-        rv.created_at = rv.updated_at = dt
-        rvstr = rv.__str__()
-        self.assertIn("[Review] (123456)", rvstr)
-        self.assertIn("'id': '123456'", rvstr)
-        self.assertIn("'created_at': " + dt_repr, rvstr)
-        self.assertIn("'updated_at': " + dt_repr, rvstr)
+        r = Review()
+        r.id = "123456"
+        r.created_at = r.updated_at = dt
+        r_str = r.__str__()
+        self.assertIn("[Review] (123456)", r_str)
+        self.assertIn("'id': '123456'", r_str)
+        self.assertIn("'created_at': " + dt_repr, r_str)
+        self.assertIn("'updated_at': " + dt_repr, r_str)
 
     def test_args_unused(self):
         rv = Review(None)

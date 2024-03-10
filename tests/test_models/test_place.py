@@ -19,8 +19,8 @@ class TestPlace(unittest.TestCase):
         cls.place = Place()
         cls.place.city_id = str(uuid.uuid4())
         cls.place.user_id = str(uuid.uuid4())
-        cls.place.name = "Any place in the world"
-        cls.place.description = "Suny Beatch"
+        cls.place.name = "Hilton"
+        cls.place.description = "5-stars hotel in downtown"
         cls.place.number_rooms = 0
         cls.place.number_bathrooms = 0
         cls.place.max_guest = 0
@@ -31,7 +31,7 @@ class TestPlace(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        """Clean up the dirt"""
+        """Cleans the dirt"""
         del cls.place
         try:
             os.remove("file.json")
@@ -44,7 +44,7 @@ class TestPlace(unittest.TestCase):
     def checking_for_doc(self):
         self.assertIsNotNone(Place.__doc__)
 
-    def test_has_attributes(self):
+    def test_attrs(self):
         self.assertTrue('id' in self.place.__dict__)
         self.assertTrue('created_at' in self.place.__dict__)
         self.assertTrue('updated_at' in self.place.__dict__)

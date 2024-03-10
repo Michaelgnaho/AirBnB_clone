@@ -1,17 +1,11 @@
 #!/usr/bin/python3
-"""Defines unittests for models/state.py.
-Unittest classes:
-    TestState_instantiation
-    TestState_save
-    TestState_to_dict
-"""
-import os
+"""Test module for state class"""
+
 import models
 import unittest
 from datetime import datetime
 from time import sleep
 from models.state import State
-from models import storage
 from models.base_model import BaseModel
 
 

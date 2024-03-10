@@ -1,17 +1,11 @@
 #!/usr/bin/env python3
 """Unittest module for the Amenity Class."""
 
-import unittest
-import os
 from models.amenity import Amenity
 from models.base_model import BaseModel
-import uuid
+import unittest
 import datetime
-import time
-import re
-import json
-from models.engine.file_storage import FileStorage
-from models import storage
+import os
 
 class TestAmenity(unittest.TestCase):
     """Amenity model class test case"""
@@ -37,12 +31,6 @@ class TestAmenity(unittest.TestCase):
     def checking_for_doc(self):
         self.assertIsNotNone(Amenity.__doc__)
 
-    # def test_has_attributes(self):
-    #    self.assertTrue('id' in self.amenity.__dict__)
-    #    self.assertTrue('created_at' in self.amenity.__dict__)
-    #    self.assertTrue('updated_at' in self.amenity.__dict__)
-    #    self.assertTrue('name' in self.amenity.__dict__)
-    # OR
     a = Amenity()
     def test_has_attributes(self):
         """verify if attributes exist"""
@@ -55,16 +43,16 @@ class TestAmenity(unittest.TestCase):
         self.assertIs(type(self.amenity.name), str)
 
     def test_class_exists(self):
-        """tests if class exists"""
-        res = "<class 'models.amenity.Amenity'>"
-        self.assertEqual(str(type(self.a)), res)
+        '''Tests whether class exists or not'''
+        x = "<class 'models.amenity.Amenity'>"
+        self.assertEqual(str(type(self.a)), x)
 
     def test_user_inheritance(self):
-        """test if Amenity is a subclass of BaseModel"""
+        '''Tests if Amenity is a subclass of BaseModel'''
         self.assertIsInstance(self.a, Amenity)
 
     def test_types(self):
-        """tests if the type of the attribute is the correct one"""
+        '''tests if the type of the attribute is the correct one'''
         self.assertIsInstance(self.a.name, str)
         self.assertIsInstance(self.a.id, str)
         self.assertIsInstance(self.a.created_at, datetime.datetime)
