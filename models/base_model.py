@@ -14,12 +14,12 @@ class BaseModel:
         '''The initialization for BaseModel class'''
         if kwargs:
             for k, val in kwargs.items():
-                if k == 'created_at':
+                if k == "created_at":
                     self.created_at = datetime.strptime(
-                        kwargs['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
-                elif k == 'updated_at':
+                        kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
+                elif k == "updated_at":
                     self.updated_at = datetime.strptime(
-                        kwargs['updated_at'], '%Y-%m-%dT%H:%M:%S.%f')
+                        kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
                 elif k == "__class__":
                     continue
                 else:

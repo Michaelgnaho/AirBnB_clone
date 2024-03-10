@@ -35,6 +35,7 @@ class FileStorage:
     def new(self, obj):
         '''sets in __objects the obj with key <obj class name>.id'''
         if obj.id in type(self).__objects:
+            print("exists")
             return
         else:
             k = f"{obj.__class__.__name__}.{obj.id}"
