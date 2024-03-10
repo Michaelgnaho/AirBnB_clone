@@ -22,15 +22,16 @@ clss = {
     "State": State
 }
 
+
 class FileStorage:
     '''File storage class'''
     __file_path = "file.json"
     __objects = {}
-    
+
     def all(self):
         '''Returns the dictionary __objects'''
         return type(self).__objects
-    
+
     def new(self, obj):
         '''sets in __objects the obj with key <obj class name>.id'''
         if obj.id in type(self).__objects:
@@ -46,7 +47,7 @@ class FileStorage:
             x.append(obj.to_dict())
         with open(type(self).__file_path, "w", encoding='utf-8') as f:
             json.dump(x, f)
-    
+
     def reload(self):
         '''deserializes the JSON file to __objects'''
         if os.path.exists(type(self).__file_path) is True:
